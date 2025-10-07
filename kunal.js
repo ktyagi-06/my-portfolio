@@ -1,17 +1,23 @@
-// Simple form validation
-document.getElementById("contactForm").addEventListener("submit", function(e) {
-  e.preventDefault(); // prevent real submission
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const message = document.getElementById("message").value.trim();
-  const status = document.getElementById("formStatus");
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
 
-  if (name && email && message) {
-    status.style.color = "green";
-    status.textContent = "Message sent successfully! (Not really, demo only)";
-    this.reset();
+// Add scroll effect to navigation
+window.addEventListener('scroll', () => {
+  const header = document.querySelector('header');
+  if (window.scrollY > 100) {
+    header.classList.add('bg-gray-900');
   } else {
-    status.style.color = "red";
-    status.textContent = "Please fill all fields correctly.";
+    header.classList.remove('bg-gray-900');
   }
 });
