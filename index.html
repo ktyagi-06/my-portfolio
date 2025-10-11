@@ -6,11 +6,13 @@
   <title>Kunal Tyagi | Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="kunal.css" />
-  <script>
-    // Enable Tailwind dark mode manually
-    tailwind.config = {
-      darkMode: 'class',
+  <style>
+    html {
+      scroll-behavior: smooth;
     }
+  </style>
+  <script>
+    tailwind.config = { darkMode: 'class' }
   </script>
 </head>
 
@@ -60,14 +62,40 @@
     </div>
   </section>
 
-  <!-- Keep the rest of your sections (About, Skills, Projects, Contact, Footer) exactly as you already have them -->
-  
+  <!-- About Section -->
+  <section id="about" class="py-20 section-bg scroll-mt-24">
+    <!-- your about content -->
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-20 scroll-mt-24">
+    <!-- your skills content -->
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-20 section-bg scroll-mt-24">
+    <!-- your projects content -->
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 scroll-mt-24">
+    <!-- your contact content -->
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800/50 border-t border-gray-700 py-8">
+    <div class="container mx-auto px-6 text-center">
+      <p class="text-gray-400">© 2025 Kunal Tyagi | All Rights Reserved</p>
+      <p class="text-gray-500 text-sm mt-2">Built with passion and modern web technologies</p>
+    </div>
+  </footer>
+
+  <!-- JS for Theme + Typing -->
   <script>
     // ===== DARK/LIGHT MODE TOGGLE =====
     const themeToggle = document.getElementById('theme-toggle');
     const html = document.documentElement;
 
-    // Load saved theme
     if (localStorage.getItem('theme') === 'light') {
       html.classList.remove('dark');
       themeToggle.textContent = '☀️';
@@ -83,10 +111,7 @@
     // ===== TYPING EFFECT =====
     const typingText = document.getElementById('typing-text');
     const words = ["Kunal Tyagi", "a Web Developer", "an AI & ML Enthusiast"];
-    let i = 0;
-    let j = 0;
-    let currentWord = "";
-    let isDeleting = false;
+    let i = 0, j = 0, currentWord = "", isDeleting = false;
 
     function type() {
       currentWord = words[i];
@@ -109,9 +134,9 @@
         }
       }
     }
-
     document.addEventListener("DOMContentLoaded", type);
   </script>
 </body>
 </html>
+
 
