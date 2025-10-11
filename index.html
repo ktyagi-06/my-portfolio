@@ -14,6 +14,8 @@
     section {
       scroll-margin-top: 90px; /* Prevents navbar overlap */
     }
+
+    /* Blinking cursor */
     .blinking-cursor::after {
       content: "|";
       animation: blink 1s step-start infinite;
@@ -46,12 +48,11 @@
       <div class="mb-6">
         <h3 class="text-purple-400 text-2xl font-semibold">Hello Everyone, I'm</h3>
       </div>
-      <h2 class="text-6xl md:text-7xl font-bold mb-6 gradient-text blinking-cursor">
+      <h2 class="text-6xl md:text-7xl font-bold mb-6 gradient-text blinking-cursor" id="typed-text">
         Kunal Tyagi
       </h2>
       <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
-        An Aspiring <span class="text-purple-400 font-semibold">Full-Stack Developer</span> 
-        and <span class="text-blue-400 font-semibold">AI & ML Enthusiast</span>
+        An Aspiring <span id="typed-subtitle" class="text-purple-400 font-semibold"></span>
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a href="#projects" class="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105">
@@ -231,7 +232,42 @@
   </footer>
 
   <script src="kunal.js"></script>
+
+  <!-- Typing Animation Script -->
+  <script>
+    const typedElement = document.getElementById("typed-subtitle");
+    const titles = ["Full-Stack Developer", "AI & ML Enthusiast"];
+    let titleIndex = 0;
+    let charIndex = 0;
+    let typingDelay = 100;
+    let erasingDelay = 50;
+    let newTitleDelay = 1500;
+
+    function type() {
+      if (charIndex < titles[titleIndex].length) {
+        typedElement.textContent += titles[titleIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(type, typingDelay);
+      } else {
+        setTimeout(erase, newTitleDelay);
+      }
+    }
+
+    function erase() {
+      if (charIndex > 0) {
+        typedElement.textContent = titles[titleIndex].substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(erase, erasingDelay);
+      } else {
+        titleIndex = (titleIndex + 1) % titles.length;
+        setTimeout(type, typingDelay);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      setTimeout(type, newTitleDelay);
+    });
+  </script>
 </body>
 </html>
-
 
