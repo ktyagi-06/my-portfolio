@@ -48,11 +48,9 @@
       <div class="mb-6">
         <h3 class="text-purple-400 text-2xl font-semibold">Hello Everyone, I'm</h3>
       </div>
-      <h2 class="text-6xl md:text-7xl font-bold mb-6 gradient-text blinking-cursor" id="typed-text">
-        Kunal Tyagi
-      </h2>
+      <h2 class="text-6xl md:text-7xl font-bold mb-6 gradient-text blinking-cursor" id="typed-name"></h2>
       <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
-        An Aspiring <span id="typed-subtitle" class="text-purple-400 font-semibold"></span>
+        An Aspiring <span id="typed-subtitle" class="text-purple-400 font-semibold blinking-cursor"></span>
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a href="#projects" class="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105">
@@ -235,7 +233,24 @@
 
   <!-- Typing Animation Script -->
   <script>
-    const typedElement = document.getElementById("typed-subtitle");
+    // Main name typing
+    const nameText = "Kunal Tyagi";
+    const nameElement = document.getElementById("typed-name");
+    let nameIndex = 0;
+
+    function typeName() {
+      if(nameIndex < nameText.length){
+        nameElement.textContent += nameText.charAt(nameIndex);
+        nameIndex++;
+        setTimeout(typeName, 150);
+      } else {
+        // Start subtitle after name is typed
+        setTimeout(typeSubtitle, 500);
+      }
+    }
+
+    // Subtitle typing
+    const subtitleElement = document.getElementById("typed-subtitle");
     const titles = ["Full-Stack Developer", "AI & ML Enthusiast"];
     let titleIndex = 0;
     let charIndex = 0;
@@ -243,29 +258,29 @@
     let erasingDelay = 50;
     let newTitleDelay = 1500;
 
-    function type() {
+    function typeSubtitle() {
       if (charIndex < titles[titleIndex].length) {
-        typedElement.textContent += titles[titleIndex].charAt(charIndex);
+        subtitleElement.textContent += titles[titleIndex].charAt(charIndex);
         charIndex++;
-        setTimeout(type, typingDelay);
+        setTimeout(typeSubtitle, typingDelay);
       } else {
-        setTimeout(erase, newTitleDelay);
+        setTimeout(eraseSubtitle, newTitleDelay);
       }
     }
 
-    function erase() {
+    function eraseSubtitle() {
       if (charIndex > 0) {
-        typedElement.textContent = titles[titleIndex].substring(0, charIndex - 1);
+        subtitleElement.textContent = titles[titleIndex].substring(0, charIndex - 1);
         charIndex--;
-        setTimeout(erase, erasingDelay);
+        setTimeout(eraseSubtitle, erasingDelay);
       } else {
         titleIndex = (titleIndex + 1) % titles.length;
-        setTimeout(type, typingDelay);
+        setTimeout(typeSubtitle, typingDelay);
       }
     }
 
     document.addEventListener("DOMContentLoaded", function() {
-      setTimeout(type, newTitleDelay);
+      typeName();
     });
   </script>
 </body>
