@@ -1,454 +1,281 @@
 <!doctype html>
 <html lang="en">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Developer Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="/_sdk/element_sdk.js"></script>
   <style>
-    body {
-      box-sizing: border-box;
-    }
-    
-    html { 
-      scroll-behavior: smooth; 
-      height: 100%;
-    }
-    
-    body {
-      height: 100%;
-    }
-    
-    section { 
-      scroll-margin-top: 90px; 
-    }
-    
-    .blinking-cursor::after { 
-      content: "|"; 
-      animation: blink 1s step-start infinite; 
-    }
-    
-    @keyframes blink { 
-      50% { opacity: 0; } 
-    }
-    
-    .gradient-text {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .hero-bg {
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-    }
-    
-    .section-bg {
-      background: linear-gradient(135deg, #0f0f23 0%, #16213e 100%);
-    }
-    
-    .skill-tag {
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-      border: 1px solid rgba(102, 126, 234, 0.3);
-      transition: all 0.3s ease;
-    }
-    
-    .skill-tag:hover {
-      transform: translateY(-5px);
-      border-color: rgba(102, 126, 234, 0.6);
-      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
-    }
-    
-    .project-card {
-      background: linear-gradient(135deg, rgba(31, 41, 55, 0.8) 0%, rgba(17, 24, 39, 0.8) 100%);
-      border: 1px solid rgba(75, 85, 99, 0.3);
-      transition: all 0.3s ease;
-    }
-    
-    .project-card:hover {
-      transform: translateY(-10px);
-      border-color: rgba(147, 51, 234, 0.5);
-      box-shadow: 0 20px 40px rgba(147, 51, 234, 0.1);
-    }
-    
-    .contact-card {
-      background: linear-gradient(135deg, rgba(31, 41, 55, 0.6) 0%, rgba(17, 24, 39, 0.6) 100%);
-      border: 1px solid rgba(75, 85, 99, 0.3);
-      backdrop-filter: blur(10px);
+    /* App-level small overrides kept here; the rest in kunal.css */
+    @layer utilities {
+      .gradient-text { @apply bg-clip-text text-transparent; }
     }
   </style>
-  <style>@view-transition { navigation: auto; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
- </head>
- <body class="bg-gray-900 text-white font-sans"><!-- Navigation Header -->
-  <header class="fixed w-full top-0 z-50 bg-gray-900/95 backdrop-blur-sm border-b border-gray-800">
-   <nav class="container mx-auto px-6 py-4">
-    <div class="flex justify-between items-center">
-     <h1 id="nav-name" class="text-2xl font-bold gradient-text">Kunal Tyagi</h1>
-     <ul class="flex space-x-8">
-      <li><a href="#about" class="hover:text-purple-400 transition-colors duration-300">About</a></li>
-      <li><a href="#skills" class="hover:text-purple-400 transition-colors duration-300">Skills</a></li>
-      <li><a href="#projects" class="hover:text-purple-400 transition-colors duration-300">Projects</a></li>
-      <li><a href="#education" class="hover:text-purple-400 transition-colors duration-300">Education</a></li>
-      <li><a href="#contact" class="hover:text-purple-400 transition-colors duration-300">Contact</a></li>
-     </ul>
-    </div>
-   </nav>
-  </header><!-- Hero Section -->
-  <section id="home" class="hero-bg min-h-full flex items-center justify-center pt-20">
-   <div class="text-center max-w-4xl mx-auto px-6">
-    <div class="mb-6">
-     <h3 id="greeting" class="text-purple-400 text-2xl font-semibold">Hello Everyone, I'm</h3>
-    </div>
-    <h2 id="main-name" class="text-6xl md:text-7xl font-bold mb-6 gradient-text blinking-cursor">Kunal Tyagi</h2>
-    <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">An Aspiring <span id="subtitle" class="text-purple-400 font-semibold blinking-cursor">Full Stack Developer</span></p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center"><a href="#projects" class="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105">View My Work</a> <a href="#contact" class="border-2 border-purple-600 hover:bg-purple-600 px-8 py-3 rounded-full font-semibold transition-all duration-300">Get In Touch</a>
-    </div>
-   </div>
-  </section><!-- About Section -->
-  <section id="about" class="py-20 section-bg">
-   <div class="container mx-auto px-6">
-    <div class="max-w-4xl mx-auto">
-     <h2 class="text-4xl font-bold text-center mb-12 gradient-text">About Me</h2>
-     <div class="bg-gray-800/50 rounded-2xl p-8 backdrop-blur-sm border border-gray-700">
-      <p id="about-p1" class="text-lg text-gray-300 leading-relaxed mb-6">I am passionate about building innovative web applications and exploring the vast field of Artificial Intelligence &amp; Machine Learning. With a strong foundation in programming and a curiosity-driven approach to learning, I strive to create solutions that make a difference.</p>
-      <p id="about-p2" class="text-lg text-gray-300 leading-relaxed">Skilled in Python, C++, and full-stack technologies, I'm always eager to take on new challenges and apply cutting-edge technologies to solve real-world problems.</p>
-     </div>
-    </div>
-   </div>
-  </section><!-- Skills Section -->
-  <section id="skills" class="py-20">
-   <div class="container mx-auto px-6">
-    <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Skills &amp; Technologies</h2>
-    <div class="max-w-6xl mx-auto">
-     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-4xl mx-auto">
-      <div class="skill-tag rounded-lg p-6 text-center">
-       <div class="text-3xl mb-3">
-        🐍
-       </div><span class="font-semibold text-lg">Python</span>
+  <link rel="stylesheet" href="kunal.css">
+</head>
+<body class="bg-gray-900 text-white font-sans">
+  <!-- Navigation Header -->
+  <header id="site-header" class="fixed w-full top-0 z-50 bg-gray-900/60 backdrop-blur-sm border-b border-gray-800 transition-colors duration-300">
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 id="nav-name" class="text-2xl font-bold gradient-text" style="background:linear-gradient(135deg,#667eea,#764ba2); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Kunal Tyagi</h1>
+      <ul class="hidden md:flex space-x-8 items-center">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#education" class="nav-link">Education</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button id="mobile-toggle" class="md:hidden px-3 py-2 rounded-md bg-gray-800/50">Menu</button>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <main class="pt-24">
+    <section id="home" class="hero-bg min-h-[60vh] flex items-center justify-center">
+      <div class="text-center max-w-4xl mx-auto px-6">
+        <h3 id="greeting" class="text-purple-400 text-2xl font-semibold">Hello Everyone, I'm</h3>
+        <h2 id="main-name" class="text-5xl md:text-6xl font-bold mb-4 gradient-text blinking-cursor" style="background:linear-gradient(135deg,#667eea,#764ba2); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Kunal Tyagi</h2>
+        <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">An Aspiring <span id="subtitle" class="text-purple-400 font-semibold">Full Stack Developer</span></p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#projects" class="primary-cta inline-block px-8 py-3 rounded-lg font-semibold">See Projects</a>
+          <a href="#contact" class="secondary-cta inline-block px-8 py-3 rounded-lg font-semibold">Contact Me</a>
+        </div>
       </div>
-      <div class="skill-tag rounded-lg p-6 text-center">
-       <div class="text-3xl mb-3">
-        ⚡
-       </div><span class="font-semibold text-lg">C++</span>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-20 section-bg">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-12 gradient-text">About Me</h2>
+        <div class="bg-surface rounded-2xl p-8 backdrop-blur-sm border border-gray-700 max-w-3xl mx-auto">
+          <p id="about-p1" class="text-lg text-gray-300 leading-relaxed mb-4">I am passionate about building innovative web applications and exploring the vast field of Artificial Intelligence & Machine Learning. With a strong foundation in programming and an eagerness to learn, I enjoy turning ideas into production-ready software.</p>
+          <p id="about-p2" class="text-lg text-gray-300 leading-relaxed">Skilled in Python, C++, HTML/CSS, and JavaScript — I build full-stack apps and small ML experiments. I love clean UI and smooth interactions.</p>
+        </div>
       </div>
-      <div class="skill-tag rounded-lg p-6 text-center">
-       <div class="text-3xl mb-3">
-        🏗️
-       </div><span class="font-semibold text-lg">HTML</span>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="py-16">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-8 gradient-text">Skills & Technologies</h2>
+        <div class="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
+          <div class="skill-tag rounded-lg p-4 text-center">🐍<div class="mt-2 font-semibold">Python</div></div>
+          <div class="skill-tag rounded-lg p-4 text-center">⚡<div class="mt-2 font-semibold">C++</div></div>
+          <div class="skill-tag rounded-lg p-4 text-center">🏗️<div class="mt-2 font-semibold">HTML</div></div>
+          <div class="skill-tag rounded-lg p-4 text-center">🎨<div class="mt-2 font-semibold">CSS</div></div>
+          <div class="skill-tag rounded-lg p-4 text-center">🌐<div class="mt-2 font-semibold">JavaScript</div></div>
+          <div class="skill-tag rounded-lg p-4 text-center">🤖<div class="mt-2 font-semibold">Machine Learning</div></div>
+        </div>
       </div>
-      <div class="skill-tag rounded-lg p-6 text-center">
-       <div class="text-3xl mb-3">
-        🎨
-       </div><span class="font-semibold text-lg">CSS</span>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-20 section-bg">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Featured Projects</h2>
+
+        <!-- Projects Grid -->
+        <div id="projects-grid" class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Card templates: each card has data attributes used by the modal script -->
+          <article class="project-card rounded-2xl p-6 card-hover" tabindex="0"
+                   data-title="Calculator"
+                   data-desc="A responsive calculator built with HTML, CSS, and JavaScript. Includes basic arithmetic operations and keyboard support."
+                   data-tech="HTML, JavaScript, CSS"
+                   data-repo="https://github.com/ktyagi-06/calculator"
+                   data-demo="">
+            <div class="text-4xl mb-4">🧮</div>
+            <h3 class="text-xl font-bold mb-2 text-purple-400">Calculator</h3>
+            <p class="text-gray-300 mb-4 leading-relaxed text-sm">A clean, responsive calculator with keyboard support.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tag">HTML</span><span class="tag">JavaScript</span><span class="tag">CSS</span>
+            </div>
+            <div class="flex gap-3">
+              <a class="btn-repo flex-1 text-center" href="https://github.com/ktyagi-06/calculator" target="_blank" rel="noopener">View Repo</a>
+              <button class="btn-details flex-1" type="button">Details</button>
+            </div>
+          </article>
+
+          <article class="project-card rounded-2xl p-6 card-hover" tabindex="0"
+                   data-title="News Website"
+                   data-desc="A news website that consumes APIs to show the latest headlines. Built using HTML, CSS and JavaScript with dynamic rendering."
+                   data-tech="JavaScript, CSS, HTML"
+                   data-repo="https://github.com/ktyagi-06/news_website"
+                   data-demo="">
+            <div class="text-4xl mb-4">📰</div>
+            <h3 class="text-xl font-bold mb-2 text-purple-400">News Website</h3>
+            <p class="text-gray-300 mb-4 leading-relaxed text-sm">Live-updating newsfeed using public APIs and clean UI components.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tag">API</span><span class="tag">JavaScript</span><span class="tag">CSS</span>
+            </div>
+            <div class="flex gap-3">
+              <a class="btn-repo flex-1 text-center" href="https://github.com/ktyagi-06/news_website" target="_blank" rel="noopener">View Repo</a>
+              <button class="btn-details flex-1" type="button">Details</button>
+            </div>
+          </article>
+
+          <article class="project-card rounded-2xl p-6 card-hover" tabindex="0"
+                   data-title="Digital Clock"
+                   data-desc="An elegant digital clock app with multiple themes and smooth transitions. Built in JavaScript and CSS."
+                   data-tech="JavaScript, CSS, HTML"
+                   data-repo="https://github.com/ktyagi-06/digital-clock"
+                   data-demo="">
+            <div class="text-4xl mb-4">⏰</div>
+            <h3 class="text-xl font-bold mb-2 text-purple-400">Digital Clock</h3>
+            <p class="text-gray-300 mb-4 leading-relaxed text-sm">Themed digital clock with toggleable formats and animations.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tag">JS</span><span class="tag">CSS</span>
+            </div>
+            <div class="flex gap-3">
+              <a class="btn-repo flex-1 text-center" href="https://github.com/ktyagi-06/digital-clock" target="_blank" rel="noopener">View Repo</a>
+              <button class="btn-details flex-1" type="button">Details</button>
+            </div>
+          </article>
+
+          <article class="project-card rounded-2xl p-6 card-hover" tabindex="0"
+                   data-title="Credit Card Fraud Detection"
+                   data-desc="A project demonstrating machine learning techniques to detect fraudulent credit card transactions. Includes EDA and modeling."
+                   data-tech="Python, HTML (report)"
+                   data-repo="https://github.com/ktyagi-06/Credit-card-fraud-detection-system-"
+                   data-demo="">
+            <div class="text-4xl mb-4">💳</div>
+            <h3 class="text-xl font-bold mb-2 text-purple-400">Credit Card Fraud Detection</h3>
+            <p class="text-gray-300 mb-4 leading-relaxed text-sm">ML models and evaluation for fraud detection with visual reports.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tag">Python</span><span class="tag">ML</span>
+            </div>
+            <div class="flex gap-3">
+              <a class="btn-repo flex-1 text-center" href="https://github.com/ktyagi-06/Credit-card-fraud-detection-system-" target="_blank" rel="noopener">View Repo</a>
+              <button class="btn-details flex-1" type="button">Details</button>
+            </div>
+          </article>
+
+          <article class="project-card rounded-2xl p-6 card-hover" tabindex="0"
+                   data-title="To-do List Webpage"
+                   data-desc="A modern to-do list app with add/remove, persistence, and nice UI interactions. Built using vanilla JavaScript and CSS."
+                   data-tech="JavaScript, CSS, HTML"
+                   data-repo="https://github.com/ktyagi-06/to-do-list-webpage"
+                   data-demo="">
+            <div class="text-4xl mb-4">📝</div>
+            <h3 class="text-xl font-bold mb-2 text-purple-400">To-do List Webpage</h3>
+            <p class="text-gray-300 mb-4 leading-relaxed text-sm">Local-storage backed to-do app with smooth interactions and animations.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tag">JS</span><span class="tag">CSS</span>
+            </div>
+            <div class="flex gap-3">
+              <a class="btn-repo flex-1 text-center" href="https://github.com/ktyagi-06/to-do-list-webpage" target="_blank" rel="noopener">View Repo</a>
+              <button class="btn-details flex-1" type="button">Details</button>
+            </div>
+          </article>
+
+          <article class="project-card rounded-2xl p-6 card-hover" tabindex="0"
+                   data-title="My Portfolio"
+                   data-desc="This portfolio website (you're viewing it). Built with HTML, Tailwind, and enhanced by small JS utilities for interactions."
+                   data-tech="HTML, CSS, JavaScript"
+                   data-repo="https://github.com/ktyagi-06/my-portfolio"
+                   data-demo="">
+            <div class="text-4xl mb-4">🌟</div>
+            <h3 class="text-xl font-bold mb-2 text-purple-400">My Portfolio</h3>
+            <p class="text-gray-300 mb-4 leading-relaxed text-sm">A personal site to showcase projects and experience with smooth UI transitions.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
+            </div>
+            <div class="flex gap-3">
+              <a class="btn-repo flex-1 text-center" href="https://github.com/ktyagi-06/my-portfolio" target="_blank" rel="noopener">View Repo</a>
+              <button class="btn-details flex-1" type="button">Details</button>
+            </div>
+          </article>
+        </div>
       </div>
-      <div class="skill-tag rounded-lg p-6 text-center">
-       <div class="text-3xl mb-3">
-        🌐
-       </div><span class="font-semibold text-lg">JavaScript</span>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="py-20">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Education</h2>
+        <div class="max-w-4xl mx-auto">
+          <div class="bg-surface rounded-2xl p-8 backdrop-blur-sm border border-gray-700">
+            <div class="flex items-start gap-4">
+              <div class="text-3xl">🎓</div>
+              <div>
+                <h3 class="text-xl font-bold text-purple-400 mb-2">Bachelor of Technology</h3>
+                <p class="text-lg text-gray-300 mb-2">Computer Science & Engineering</p>
+                <p class="text-gray-400 mb-3">Manipal University Jaipur • 2024 - 2028</p>
+                <p class="text-gray-300 leading-relaxed">Focused on software development, algorithms, and artificial intelligence.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="skill-tag rounded-lg p-6 text-center">
-       <div class="text-3xl mb-3">
-        🤖
-       </div><span class="font-semibold text-lg">Machine Learning</span>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 section-bg">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Get In Touch</h2>
+        <div class="max-w-4xl mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="contact-card rounded-2xl p-6 text-center">
+              <div class="text-3xl mb-4">📧</div>
+              <h3 class="text-lg font-semibold text-purple-400 mb-2">Email</h3>
+              <p id="email" class="text-gray-300">ktyagi0506@gmail.com</p>
+            </div>
+            <div class="contact-card rounded-2xl p-6 text-center">
+              <div class="text-3xl mb-4">📱</div>
+              <h3 class="text-lg font-semibold text-purple-400 mb-2">Phone</h3>
+              <p id="phone" class="text-gray-300">+91 98765 43210</p>
+            </div>
+            <div class="contact-card rounded-2xl p-6 text-center">
+              <div class="text-3xl mb-4">📍</div>
+              <h3 class="text-lg font-semibold text-purple-400 mb-2">Location</h3>
+              <p id="location" class="text-gray-300">New Delhi, India</p>
+            </div>
+          </div>
+
+          <div class="text-center mt-12">
+            <h3 class="text-xl font-semibold mb-6 text-purple-400">Connect With Me</h3>
+            <div class="flex justify-center space-x-6">
+              <a href="#" target="_blank" rel="noopener noreferrer" class="text-3xl hover:text-purple-400 transition-colors duration-300">💼</a>
+              <a href="#" target="_blank" rel="noopener noreferrer" class="text-3xl hover:text-purple-400 transition-colors duration-300">🐦</a>
+            </div>
+          </div>
+        </div>
       </div>
-     </div>
-    </div>
-   </div>
-  </section><!-- Projects Section -->
-  <section id="projects" class="py-20 section-bg">
-   <div class="container mx-auto px-6">
-    <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Featured Projects</h2>
-    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"><!-- Project 1 -->
-     <div class="project-card rounded-2xl p-6 backdrop-blur-sm">
-      <div class="text-4xl mb-4">
-       🤖
-      </div>
-      <h3 class="text-xl font-bold mb-3 text-purple-400">AI Chat Assistant</h3>
-      <p class="text-gray-300 mb-4 leading-relaxed">Built an intelligent chatbot using Python and natural language processing. Features include context awareness and multi-language support.</p>
-      <div class="flex flex-wrap gap-2 mb-4"><span class="bg-purple-600/20 text-purple-300 px-3 py-1 rounded-full text-sm">Python</span> <span class="bg-blue-600/20 text-blue-300 px-3 py-1 rounded-full text-sm">NLP</span> <span class="bg-green-600/20 text-green-300 px-3 py-1 rounded-full text-sm">TensorFlow</span>
-      </div><button class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 px-4 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"> View Project </button>
-     </div><!-- Project 2 -->
-     <div class="project-card rounded-2xl p-6 backdrop-blur-sm">
-      <div class="text-4xl mb-4">
-       🌐
-      </div>
-      <h3 class="text-xl font-bold mb-3 text-purple-400">E-Commerce Platform</h3>
-      <p class="text-gray-300 mb-4 leading-relaxed">Full-stack web application with React frontend and Node.js backend. Includes payment integration and real-time inventory management.</p>
-      <div class="flex flex-wrap gap-2 mb-4"><span class="bg-cyan-600/20 text-cyan-300 px-3 py-1 rounded-full text-sm">React</span> <span class="bg-green-600/20 text-green-300 px-3 py-1 rounded-full text-sm">Node.js</span> <span class="bg-orange-600/20 text-orange-300 px-3 py-1 rounded-full text-sm">MongoDB</span>
-      </div><button class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 px-4 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"> View Project </button>
-     </div><!-- Project 3 -->
-     <div class="project-card rounded-2xl p-6 backdrop-blur-sm">
-      <div class="text-4xl mb-4">
-       📊
-      </div>
-      <h3 class="text-xl font-bold mb-3 text-purple-400">Data Analytics Dashboard</h3>
-      <p class="text-gray-300 mb-4 leading-relaxed">Interactive dashboard for visualizing complex datasets. Built with Python and modern visualization libraries for business insights.</p>
-      <div class="flex flex-wrap gap-2 mb-4"><span class="bg-yellow-600/20 text-yellow-300 px-3 py-1 rounded-full text-sm">Python</span> <span class="bg-red-600/20 text-red-300 px-3 py-1 rounded-full text-sm">Pandas</span> <span class="bg-indigo-600/20 text-indigo-300 px-3 py-1 rounded-full text-sm">Plotly</span>
-      </div><button class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 px-4 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"> View Project </button>
-     </div>
-    </div>
-   </div>
-  </section><!-- Education Section -->
-  <section id="education" class="py-20">
-   <div class="container mx-auto px-6">
-    <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Education</h2>
-    <div class="max-w-4xl mx-auto">
-     <div class="bg-gray-800/50 rounded-2xl p-8 backdrop-blur-sm border border-gray-700">
-      <div class="flex items-start gap-4">
-       <div class="text-3xl">
-        🎓
-       </div>
-       <div>
-        <h3 class="text-xl font-bold text-purple-400 mb-2">Bachelor of Technology</h3>
-        <p class="text-lg text-gray-300 mb-2">Computer Science &amp; Engineering</p>
-        <p class="text-gray-400 mb-3">Manipal University Jaipur • 2024 - 2028</p>
-        <p class="text-gray-300 leading-relaxed">Focused on software development, algorithms, and artificial intelligence.</p>
-       </div>
-      </div>
-     </div>
-    </div>
-   </div>
-  </section><!-- Contact Section -->
-  <section id="contact" class="py-20 section-bg">
-   <div class="container mx-auto px-6">
-    <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Get In Touch</h2>
-    <div class="max-w-4xl mx-auto">
-     <div class="grid grid-cols-1 md:grid-cols-3 gap-6"><!-- Email -->
-      <div class="contact-card rounded-2xl p-6 text-center">
-       <div class="text-3xl mb-4">
-        📧
-       </div>
-       <h3 class="text-lg font-semibold text-purple-400 mb-2">Email</h3>
-       <p id="email" class="text-gray-300">kunal.tyagi@example.com</p>
-      </div><!-- Phone -->
-      <div class="contact-card rounded-2xl p-6 text-center">
-       <div class="text-3xl mb-4">
-        📱
-       </div>
-       <h3 class="text-lg font-semibold text-purple-400 mb-2">Phone</h3>
-       <p id="phone" class="text-gray-300">+91 98765 43210</p>
-      </div><!-- Location -->
-      <div class="contact-card rounded-2xl p-6 text-center">
-       <div class="text-3xl mb-4">
-        📍
-       </div>
-       <h3 class="text-lg font-semibold text-purple-400 mb-2">Location</h3>
-       <p id="location" class="text-gray-300">New Delhi, India</p>
-      </div>
-     </div><!-- Social Links -->
-     <div class="text-center mt-12">
-      <h3 class="text-xl font-semibold mb-6 text-purple-400">Connect With Me</h3>
-      <div class="flex justify-center space-x-6"><a href="#" target="_blank" rel="noopener noreferrer" class="text-3xl hover:text-purple-400 transition-colors duration-300"> <span>💼</span> </a> <a href="#" target="_blank" rel="noopener noreferrer" class="text-3xl hover:text-purple-400 transition-colors duration-300"> <span>🐙</span> </a> <a href="#" target="_blank" rel="noopener noreferrer" class="text-3xl hover:text-purple-400 transition-colors duration-300"> <span>🐦</span> </a> <a href="#" target="_blank" rel="noopener noreferrer" class="text-3xl hover:text-purple-400 transition-colors duration-300"> <span>📷</span> </a>
-      </div>
-     </div>
-    </div>
-   </div>
-  </section><!-- Footer -->
+    </section>
+
+  </main>
+
+  <!-- Footer -->
   <footer class="py-8 border-t border-gray-800">
-   <div class="container mx-auto px-6 text-center">
-    <p class="text-gray-400">© 2024 <span id="footer-name" class="text-purple-400">Kunal Tyagi</span>. All rights reserved.</p>
-   </div>
+    <div class="container mx-auto px-6 text-center">
+      <p class="text-gray-400">© <span id="footer-year">2024</span> <span id="footer-name" class="text-purple-400">Kunal Tyagi</span>. All rights reserved.</p>
+    </div>
   </footer>
+
+  <!-- Project Modal -->
+  <div id="project-modal" class="fixed inset-0 z-60 hidden items-center justify-center px-4" aria-hidden="true">
+    <div id="modal-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+    <div class="relative z-10 max-w-3xl w-full">
+      <div class="bg-surface rounded-2xl p-6 border border-gray-700">
+        <div class="flex justify-between items-start gap-4">
+          <div>
+            <h3 id="modal-title" class="text-2xl font-bold text-purple-400 mb-2"></h3>
+            <p id="modal-desc" class="text-gray-300 mb-4"></p>
+            <div id="modal-tech" class="flex flex-wrap gap-2 mb-4"></div>
+            <div class="flex gap-3">
+              <a id="modal-repo" class="primary-cta inline-block px-4 py-2 rounded-lg font-semibold" target="_blank" rel="noopener">View Repo</a>
+              <a id="modal-demo" class="secondary-cta inline-block px-4 py-2 rounded-lg font-semibold" target="_blank" rel="noopener">Live Demo</a>
+            </div>
+          </div>
+          <button id="modal-close" aria-label="Close modal" class="text-gray-300 text-2xl">&times;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="kunal.js"></script>
   <script>
-    // Default configuration
-    const defaultConfig = {
-      developer_name: "Kunal Tyagi",
-      greeting_text: "Hello Everyone, I'm",
-      subtitle_text: "Full Stack Developer",
-      about_paragraph_1: "I am passionate about building innovative web applications and exploring the vast field of Artificial Intelligence & Machine Learning. With a strong foundation in programming and a curiosity-driven approach to learning, I strive to create solutions that make a difference.",
-      about_paragraph_2: "Skilled in Python, C++, and full-stack technologies, I'm always eager to take on new challenges and apply cutting-edge technologies to solve real-world problems.",
-      email_address: "ktyagi0506@gmail.com"
-      background_color: "#111827",
-      surface_color: "#1f2937",
-      text_color: "#e5e7eb",
-      primary_action_color: "#7c3aed",
-      secondary_action_color: "#667eea"
-    };
-
-    // Render function to update UI based on config
-    async function render(config) {
-      // Update text content
-      document.getElementById('nav-name').textContent = config.developer_name || defaultConfig.developer_name;
-      document.getElementById('main-name').textContent = config.developer_name || defaultConfig.developer_name;
-      document.getElementById('footer-name').textContent = config.developer_name || defaultConfig.developer_name;
-      document.getElementById('greeting').textContent = config.greeting_text || defaultConfig.greeting_text;
-      document.getElementById('subtitle').textContent = config.subtitle_text || defaultConfig.subtitle_text;
-      document.getElementById('about-p1').textContent = config.about_paragraph_1 || defaultConfig.about_paragraph_1;
-      document.getElementById('about-p2').textContent = config.about_paragraph_2 || defaultConfig.about_paragraph_2;
-      document.getElementById('email').textContent = config.email_address || defaultConfig.email_address;
-      document.getElementById('phone').textContent = config.phone_number || defaultConfig.phone_number;
-      document.getElementById('location').textContent = config.location_text || defaultConfig.location_text;
-
-      // Update colors
-      const backgroundColor = config.background_color || defaultConfig.background_color;
-      const surfaceColor = config.surface_color || defaultConfig.surface_color;
-      const textColor = config.text_color || defaultConfig.text_color;
-      const primaryActionColor = config.primary_action_color || defaultConfig.primary_action_color;
-      const secondaryActionColor = config.secondary_action_color || defaultConfig.secondary_action_color;
-
-      document.body.style.backgroundColor = backgroundColor;
-      document.body.style.color = textColor;
-
-      // Update surface colors
-      const surfaceElements = document.querySelectorAll('.bg-gray-800\\/50, .contact-card, .project-card');
-      surfaceElements.forEach(el => {
-        el.style.backgroundColor = surfaceColor + '80'; // Add transparency
-      });
-
-      // Update primary action colors
-      const primaryButtons = document.querySelectorAll('.bg-gradient-to-r');
-      primaryButtons.forEach(el => {
-        el.style.background = `linear-gradient(135deg, ${primaryActionColor}, ${secondaryActionColor})`;
-      });
-    }
-
-    // Capabilities mapping
-    function mapToCapabilities(config) {
-      return {
-        recolorables: [
-          {
-            get: () => config.background_color || defaultConfig.background_color,
-            set: (value) => {
-              if (window.elementSdk) {
-                window.elementSdk.setConfig({ background_color: value });
-              }
-            }
-          },
-          {
-            get: () => config.surface_color || defaultConfig.surface_color,
-            set: (value) => {
-              if (window.elementSdk) {
-                window.elementSdk.setConfig({ surface_color: value });
-              }
-            }
-          },
-          {
-            get: () => config.text_color || defaultConfig.text_color,
-            set: (value) => {
-              if (window.elementSdk) {
-                window.elementSdk.setConfig({ text_color: value });
-              }
-            }
-          },
-          {
-            get: () => config.primary_action_color || defaultConfig.primary_action_color,
-            set: (value) => {
-              if (window.elementSdk) {
-                window.elementSdk.setConfig({ primary_action_color: value });
-              }
-            }
-          },
-          {
-            get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
-            set: (value) => {
-              if (window.elementSdk) {
-                window.elementSdk.setConfig({ secondary_action_color: value });
-              }
-            }
-          }
-        ],
-        borderables: [],
-        fontEditable: undefined,
-        fontSizeable: undefined
-      };
-    }
-
-    // Edit panel values mapping
-    function mapToEditPanelValues(config) {
-      return new Map([
-        ["developer_name", config.developer_name || defaultConfig.developer_name],
-        ["greeting_text", config.greeting_text || defaultConfig.greeting_text],
-        ["subtitle_text", config.subtitle_text || defaultConfig.subtitle_text],
-        ["about_paragraph_1", config.about_paragraph_1 || defaultConfig.about_paragraph_1],
-        ["about_paragraph_2", config.about_paragraph_2 || defaultConfig.about_paragraph_2],
-        ["email_address", config.email_address || defaultConfig.email_address],
-        ["phone_number", config.phone_number || defaultConfig.phone_number],
-        ["location_text", config.location_text || defaultConfig.location_text]
-      ]);
-    }
-
-    // Initialize the Element SDK
-    if (window.elementSdk) {
-      window.elementSdk.init({
-        defaultConfig,
-        render,
-        mapToCapabilities,
-        mapToEditPanelValues
-      });
-    }
-
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
-    });
-
-    // Add typing animation effect
-    function typeWriter(element, text, speed = 100) {
-      let i = 0;
-      element.textContent = '';
-      element.classList.add('blinking-cursor');
-      
-      function type() {
-        if (i < text.length) {
-          element.textContent += text.charAt(i);
-          i++;
-          setTimeout(type, speed);
-        } else {
-          setTimeout(() => {
-            element.classList.remove('blinking-cursor');
-          }, 1000);
-        }
-      }
-      type();
-    }
-
-    // Initialize typing animations on page load
-    window.addEventListener('load', () => {
-      const nameElement = document.getElementById('main-name');
-      const subtitleElement = document.getElementById('subtitle');
-      
-      setTimeout(() => {
-        typeWriter(nameElement, nameElement.textContent, 150);
-      }, 500);
-      
-      setTimeout(() => {
-        typeWriter(subtitleElement, subtitleElement.textContent, 100);
-      }, 2500);
-    });
-
-    // Add scroll-based animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, observerOptions);
-
-    // Observe skill tags and project cards for animations
-    document.querySelectorAll('.skill-tag, .project-card').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(30px)';
-      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      observer.observe(el);
-    });
+    // Minimal inline initialization that works with the existing render function in the original.
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'992fbaf3579b33c6',t:'MTc2MTIwNjczNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
