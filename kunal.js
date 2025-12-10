@@ -1,115 +1,96 @@
-// UI utilities and interactions: smooth scrolling, header behavior, and project modal
+// script.js
+// Handles dynamic subtitle rotation (typewriter effect) and removal of "My Portfolio" project card(s)
 
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    // If it's a link to the same page
-    if (this.hash) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+(function () {
+  const phrases = ["Full Stack Developer", "ML Enthusiast"];
+  const typingSpeed = 60;     // ms per character
+  const deletingSpeed = 40;   // ms per character when deleting
+  const holdDelay = 1300;     // how long to hold the phrase before deleting
+  let current = 0; // index of current phrase
+
+  function typewriter(el, cursorEl, phrase, cb) {
+    let i = 0;
+    function type() {
+      if (i <= phrase.length) {
+        el.textContent = phrase.slice(0, i);
+        i++;
+        setTimeout(type, typingSpeed);
+      } else {
+        setTimeout(() => deleteText(), holdDelay);
       }
     }
-  });
-});
-
-// Header background toggle on scroll for better contrast
-window.addEventListener('scroll', () => {
-  const header = document.getElementById('site-header');
-  if (!header) return;
-  if (window.scrollY > 60) {
-    header.classList.add('bg-gray-900/95', 'backdrop-blur-sm');
-  } else {
-    header.classList.remove('bg-gray-900/95', 'backdrop-blur-sm');
-  }
-});
-
-// Project modal logic
-(function(){
-  const modal = document.getElementById('project-modal');
-  const modalTitle = document.getElementById('modal-title');
-  const modalDesc = document.getElementById('modal-desc');
-  const modalTech = document.getElementById('modal-tech');
-  const modalRepo = document.getElementById('modal-repo');
-  const modalDemo = document.getElementById('modal-demo');
-  const modalClose = document.getElementById('modal-close');
-  const backdrop = document.getElementById('modal-backdrop');
-
-  function openModalFromCard(card) {
-    const title = card.dataset.title || 'Project';
-    const desc = card.dataset.desc || '';
-    const tech = (card.dataset.tech || '').split(',').map(s => s.trim()).filter(Boolean);
-    const repo = card.dataset.repo || '#';
-    const demo = card.dataset.demo || '';
-
-    modalTitle.textContent = title;
-    modalDesc.textContent = desc;
-    modalTech.innerHTML = tech.map(t => `<span class="tag">${t}</span>`).join(' ');
-    modalRepo.href = repo;
-    modalRepo.setAttribute('target', '_blank');
-
-    if (demo) {
-      modalDemo.href = demo;
-      modalDemo.style.display = 'inline-block';
-      modalDemo.setAttribute('target', '_blank');
-    } else {
-      modalDemo.style.display = 'none';
+    function deleteText() {
+      if (i >= 0) {
+        el.textContent = phrase.slice(0, i);
+        i--;
+        setTimeout(deleteText, deletingSpeed);
+      } else {
+        cb && cb();
+      }
     }
-
-    modal.setAttribute('aria-hidden', 'false');
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-    // focus trap: focus the close button
-    modalClose?.focus();
+    type();
   }
 
-  function closeModal() {
-    modal.setAttribute('aria-hidden', 'true');
-    modal.style.display = 'none';
-    document.body.style.overflow = '';
-  }
-
-  // Attach event listeners to "Details" buttons on project cards
-  document.querySelectorAll('.project-card').forEach(card => {
-    const detailsBtn = card.querySelector('.btn-details');
-    if (detailsBtn) {
-      detailsBtn.addEventListener('click', () => openModalFromCard(card));
+  function startLoop() {
+    const el = document.getElementById("subtitle");
+    const cursorEl = document.getElementById("subtitle-cursor");
+    if (!el) return;
+    function next() {
+      typewriter(el, cursorEl, phrases[current], () => {
+        current = (current + 1) % phrases.length;
+        setTimeout(next, 300);
+      });
     }
-    // Open on Enter when card focused
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        openModalFromCard(card);
+    next();
+  }
+
+  // Remove any project entries that match "My Portfolio" (case-insensitive)
+  function removeMyPortfolioProject() {
+    const projectsSection = document.getElementById("projects");
+    if (!projectsSection) return;
+    // search inside project grid for nodes that look like project cards
+    const candidates = projectsSection.querySelectorAll('*');
+    const needle = "my portfolio";
+    candidates.forEach(node => {
+      try {
+        const text = (node.textContent || "").trim().toLowerCase();
+        if (!text) return;
+        if (text.includes(needle)) {
+          // prefer removing a containing project-card or article element if present
+          const card = node.closest('.project-card') || node.closest('article') || node.closest('li') || node;
+          if (card && card.parentNode) {
+            card.parentNode.removeChild(card);
+            // also remove any empty container wrappers if they become empty
+            const parent = card.parentNode;
+            if (parent && parent.childElementCount === 0 && parent.id !== 'projects-grid') {
+              parent.remove();
+            }
+          }
+        }
+      } catch (e) {
+        // ignore nodes that trigger errors
       }
     });
+  }
+
+  // Small reveal for hero content once loaded
+  function revealHero() {
+    const hero = document.querySelector('#home .text-center');
+    if (!hero) return;
+    hero.classList.add('hero-fade-in');
+    requestAnimationFrame(() => {
+      // allow CSS transition to run
+      setTimeout(() => hero.classList.add('visible'), 40);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Start subtitle rotation
+    startLoop();
+    // Remove portfolio project(s)
+    removeMyPortfolioProject();
+    // Reveal hero
+    revealHero();
   });
 
-  // Close behavior
-  modalClose?.addEventListener('click', closeModal);
-  backdrop?.addEventListener('click', closeModal);
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal();
-  });
 })();
-
-
-// Initialize simple scroll-in animation for elements already present
-document.addEventListener('DOMContentLoaded', () => {
-  const observerOptions = { threshold: 0.12, rootMargin: '0px 0px -60px 0px' };
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-        entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll('.project-card, .skill-tag, .contact-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(24px)';
-    observer.observe(el);
-  });
-});
