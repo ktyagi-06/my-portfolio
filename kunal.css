@@ -1,27 +1,272 @@
-/* Basic reset and layout */
-:root{--bg:#0f1724;--card:#0b1220;--accent:#7dd3fc;--muted:#94a3b8;--text:#e6eef8}
-*{box-sizing:border-box}
-html,body{height:100%}
-body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;color:var(--text);background:linear-gradient(180deg,#071126 0%, #071b2a 100%);-webkit-font-smoothing:antialiased}
-.container{max-width:960px;margin:0 auto;padding:2rem}
-.hero{padding:3rem 0;text-align:center}
-.name{font-size:2.25rem;margin:0 0 .25rem}
-.tagline{font-size:1.125rem;color:var(--muted)}
-.cursor{color:var(--accent);margin-left:.5rem}
-.top-nav{margin-top:1rem}
-.top-nav a{color:var(--accent);margin:0 .5rem;text-decoration:none}
+/* =========================
+   GLOBAL RESET & VARIABLES
+========================= */
 
-section{margin-top:2.25rem}
-h2{margin:0 0 .75rem}
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
-.project-card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:1rem;border-radius:8px;border:1px solid rgba(255,255,255,0.04)}
-.project-card h3{margin:0 0 .5rem}
-.project-card p{color:var(--muted);margin:0 0 .75rem}
-.project-card a{color:var(--accent);text-decoration:none}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
-.contact-list{list-style:none;padding:0;margin:0}
-.contact-list li{margin:.4rem 0;color:var(--muted)}
-.footer{text-align:center;padding:2rem 0;color:var(--muted)}
+:root {
+  --bg-main: #020617;
+  --bg-card: rgba(15, 23, 42, 0.7);
+  --border: rgba(148, 163, 184, 0.15);
+  --text-main: #e5e7eb;
+  --text-muted: #94a3b8;
+  --accent: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.35);
+}
 
-/* small responsive tweaks */
-@media (max-width:520px){.name{font-size:1.5rem}.container{padding:1rem}}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: radial-gradient(circle at top, #020617, #000);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  animation: fadeDown 1s ease;
+}
+
+.hero p {
+  margin-top: 12px;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  animation: fadeUp 1.2s ease;
+}
+
+.hero .cta {
+  margin-top: 35px;
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn {
+  padding: 12px 26px;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: #020617;
+  box-shadow: 0 0 0 transparent;
+}
+
+.btn.primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px var(--accent-glow);
+}
+
+.btn.secondary {
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  background: transparent;
+}
+
+.btn.secondary:hover {
+  background: var(--accent);
+  color: #020617;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+section {
+  padding: 90px 20px;
+}
+
+section h2 {
+  font-size: 2.3rem;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+section p {
+  color: var(--text-muted);
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about {
+  max-width: 900px;
+  margin: auto;
+}
+
+/* =========================
+   PROJECTS GRID
+========================= */
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  margin-top: 50px;
+}
+
+/* =========================
+   PROJECT CARD
+========================= */
+
+.card {
+  background: var(--bg-card);
+  border-radius: 18px;
+  padding: 28px;
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(56, 189, 248, 0.12),
+    transparent
+  );
+  opacity: 0;
+  transition: 0.35s ease;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.01);
+  border-color: var(--accent);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+}
+
+.card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.card p {
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+.card a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact {
+  text-align: center;
+}
+
+.contact a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.contact a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+  padding: 30px;
+  text-align: center;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.7rem;
+  }
+
+  section h2 {
+    font-size: 2rem;
+  }
+}
