@@ -1,27 +1,72 @@
-/* Basic reset and layout */
-:root{--bg:#0f1724;--card:#0b1220;--accent:#7dd3fc;--muted:#94a3b8;--text:#e6eef8}
+/* Core styles and improved smooth UI behaviors */
+
+:root{
+  --bg:#0f1724;
+  --surface: rgba(31,41,55,0.65);
+  --muted:#9CA3AF;
+  --accent-1: #7c3aed;
+  --accent-2: #667eea;
+}
+
+/* Global */
 *{box-sizing:border-box}
-html,body{height:100%}
-body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;color:var(--text);background:linear-gradient(180deg,#071126 0%, #071b2a 100%);-webkit-font-smoothing:antialiased}
-.container{max-width:960px;margin:0 auto;padding:2rem}
-.hero{padding:3rem 0;text-align:center}
-.name{font-size:2.25rem;margin:0 0 .25rem}
-.tagline{font-size:1.125rem;color:var(--muted)}
-.cursor{color:var(--accent);margin-left:.5rem}
-.top-nav{margin-top:1rem}
-.top-nav a{color:var(--accent);margin:0 .5rem;text-decoration:none}
+body{
+  background: linear-gradient(180deg,var(--bg),#071029);
+  color: #e6eef8;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  transition: background-color 300ms ease, color 300ms ease;
+}
 
-section{margin-top:2.25rem}
-h2{margin:0 0 .75rem}
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
-.project-card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:1rem;border-radius:8px;border:1px solid rgba(255,255,255,0.04)}
-.project-card h3{margin:0 0 .5rem}
-.project-card p{color:var(--muted);margin:0 0 .75rem}
-.project-card a{color:var(--accent);text-decoration:none}
+/* Surface used on cards and panels */
+.bg-surface{ background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); }
+.section-bg{ background: linear-gradient(135deg, rgba(15,17,36,0.55), rgba(6,8,20,0.55)); }
+.hero-bg{ background: linear-gradient(135deg,#0f1724,#071029); }
 
-.contact-list{list-style:none;padding:0;margin:0}
-.contact-list li{margin:.4rem 0;color:var(--muted)}
-.footer{text-align:center;padding:2rem 0;color:var(--muted)}
+/* Gradient text helper */
+.gradient-text{
+  background: linear-gradient(135deg, var(--accent-2), var(--accent-1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
-/* small responsive tweaks */
-@media (max-width:520px){.name{font-size:1.5rem}.container{padding:1rem}}
+/* Navigation */
+.nav-link{ position:relative; color:var(--muted); transition: color .2s ease; }
+.nav-link:hover{ color: var(--accent-1); }
+.nav-link::after{
+  content:""; position:absolute; left:0; bottom:-6px; height:2px; width:0;
+  background:linear-gradient(90deg,var(--accent-2),var(--accent-1));
+  transition: width .28s ease;
+}
+.nav-link:hover::after{ width:100%; }
+
+/* Skill tag */
+.skill-tag{
+  background:linear-gradient(135deg, rgba(118,75,162,0.06), rgba(102,126,234,0.04));
+  border: 1px solid rgba(255,255,255,0.03);
+  transition: transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s ease;
+}
+.skill-tag:hover{ transform: translateY(-6px); box-shadow: 0 18px 40px rgba(2,6,23,0.6); }
+
+/* Project grid and cards */
+#projects-grid{ margin-top: 8px; }
+.project-card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.03);
+  transition: transform .35s cubic-bezier(.2,.9,.3,1), box-shadow .35s ease, border-color .35s ease;
+  will-change: transform;
+}
+.card-hover{ cursor:pointer; }
+.card-hover:hover,.card-hover:focus{
+  transform: translateY(-12px) scale(1.01);
+  box-shadow: 0 30px 60px rgba(2,6,23,0.6);
+  border-color: rgba(124,58,237,0.28);
+  outline: none;
+}
+
+/* Tags and buttons */
+.tag{
+  background: rgba(255,255,255,0.03);
+  padding:6px 10px;
+  border-radius:999px;
