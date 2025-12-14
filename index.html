@@ -2,87 +2,77 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Developer Portfolio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* App-level small overrides kept here; the rest in kunal.css */
-    @layer utilities {
-      .gradient-text { @apply bg-clip-text text-transparent; }
-    }
-  </style>
-  <link rel="stylesheet" href="kunal.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kunal Tyagi — Portfolio</title>
+  <link rel="stylesheet" href="kunal.css" />
 </head>
-<body class="bg-gray-900 text-white font-sans">
-  <!-- Navigation Header -->
-  <header id="site-header" class="fixed w-full top-0 z-50 bg-gray-900/60 backdrop-blur-sm border-b border-gray-800 transition-colors duration-300">
-    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <h1 id="nav-name" class="text-2xl font-bold gradient-text" style="background:linear-gradient(135deg,#667eea,#764ba2); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Kunal Tyagi</h1>
-      <ul class="hidden md:flex space-x-8 items-center">
-        <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="#skills" class="nav-link">Skills</a></li>
-        <li><a href="#projects" class="nav-link">Projects</a></li>
-        <li><a href="#education" class="nav-link">Education</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
-      </ul>
-      <button id="mobile-toggle" class="md:hidden px-3 py-2 rounded-md bg-gray-800/50">Menu</button>
-    </nav>
+<body>
+  <header class="hero">
+    <div class="container">
+      <h1 class="name">Kunal Tyagi</h1>
+      <p class="tagline">I am a <span id="dynamic-tag">ML Enthusiast</span><span class="cursor">|</span></p>
+      <nav class="top-nav">
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <!-- Hero -->
-  <main class="pt-24">
-    <section id="home" class="hero-bg min-h-[60vh] flex items-center justify-center">
-      <div class="text-center max-w-4xl mx-auto px-6">
-        <h3 id="greeting" class="text-purple-400 text-2xl font-semibold">Hello Everyone, I'm</h3>
-        <h2 id="main-name" class="text-5xl md:text-6xl font-bold mb-4 gradient-text blinking-cursor" style="background:linear-gradient(135deg,#667eea,#764ba2); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Kunal Tyagi</h2>
-        <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
-          An Aspiring
-          <span id="subtitle" class="text-purple-400 font-semibold"></span><span id="subtitle-cursor" class="text-purple-400 font-semibold"></span>
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="#projects" class="primary-cta inline-block px-8 py-3 rounded-lg font-semibold">See Projects</a>
-          <a href="#contact" class="secondary-cta inline-block px-8 py-3 rounded-lg font-semibold">Contact Me</a>
-        </div>
+  <main class="container">
+    <section id="about">
+      <h2>About</h2>
+      <p>Hi — I'm Kunal. I build useful things with code and data. Below are a few projects I've made.</p>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="projects-grid">
+        <article class="project-card">
+          <h3>Calculator</h3>
+          <p>Simple calculator built with HTML, CSS and JavaScript.</p>
+          <a href="https://github.com/ktyagi-06/calculator" target="_blank" rel="noopener">View on GitHub</a>
+        </article>
+
+        <article class="project-card">
+          <h3>News Website</h3>
+          <p>A news website using JavaScript to fetch and display articles.</p>
+          <a href="https://github.com/ktyagi-06/news_website" target="_blank" rel="noopener">View on GitHub</a>
+        </article>
+
+        <article class="project-card">
+          <h3>Digital Clock</h3>
+          <p>A realtime digital clock implemented in JavaScript.</p>
+          <a href="https://github.com/ktyagi-06/digital-clock" target="_blank" rel="noopener">View on GitHub</a>
+        </article>
+
+        <article class="project-card">
+          <h3>To Do List Webpage</h3>
+          <p>To-do list app with add/remove and localStorage support.</p>
+          <a href="https://github.com/ktyagi-06/to-do-list-webpage" target="_blank" rel="noopener">View on GitHub</a>
+        </article>
+
+        <article class="project-card">
+          <h3>Credit Card Fraud Detection System</h3>
+          <p>A project demonstrating fraud detection concepts and visualizations.</p>
+          <a href="https://github.com/ktyagi-06/Credit-card-fraud-detection-system-" target="_blank" rel="noopener">View on GitHub</a>
+        </article>
       </div>
     </section>
 
-    <!-- About -->
-    <section id="about" class="py-20 section-bg">
-      <div class="container mx-auto px-6">
-        <!-- about content -->
-      </div>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects" class="py-20">
-      <div class="container mx-auto px-6">
-        <h3 class="text-3xl font-bold mb-6">Projects</h3>
-        <div id="projects-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Example project card structure (actual repo cards preserved); JS will remove any card that contains "My Portfolio" -->
-          <!--
-            <article class="project-card card-hover p-6" data-title="My Portfolio">
-              <h4 class="project-title">My Portfolio</h4>
-              ...
-            </article>
-          -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Education / Contact etc -->
-    <section id="education" class="py-20 section-bg">
-      <div class="container mx-auto px-6">
-        <!-- education content -->
-      </div>
-    </section>
-
-    <section id="contact" class="py-20">
-      <div class="container mx-auto px-6">
-        <!-- contact content -->
-      </div>
+    <section id="contact">
+      <h2>Contact</h2>
+      <ul class="contact-list">
+        <li>Email: <a href="mailto:ktyagi0506@gmail.com">ktyagi0506@gmail.com</a></li>
+        <li>Phone: <a href="tel:+919354900424">+91 93549 00424</a></li>
+        <li>LinkedIn: <a href="https://www.linkedin.com/in/kunal-tyagi-b34537314/" target="_blank" rel="noopener">https://www.linkedin.com/in/kunal-tyagi-b34537314/</a></li>
+      </ul>
     </section>
   </main>
 
-  <script src="script.js"></script>
+  <footer class="footer">
+    <p>© <span id="year"></span> Kunal Tyagi</p>
+  </footer>
+
+  <script src="kunal.js"></script>
 </body>
 </html>
