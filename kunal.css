@@ -185,3 +185,72 @@ footer {
   section h2 { font-size: 2rem; }
 }
 
+/* =========================
+   GLOBAL FONT IMPROVEMENT
+========================= */
+html {
+  font-size: 18px; /* increased from default 16px */
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.7;
+}
+
+/* HEADINGS */
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
+p, li, a {
+  font-size: 1rem;
+}
+:root {
+  --bg: #f9fafb;
+  --text: #111827;
+  --card: #ffffff;
+  --accent: #6366f1;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark {
+  --bg: #0f172a;
+  --text: #e5e7eb;
+  --card: #020617;
+  --accent: #818cf8;
+}
+.project-card {
+  background: var(--card);
+  padding: 1.5rem;
+  border-radius: 14px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+section,
+.project-card {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.7s ease;
+}
