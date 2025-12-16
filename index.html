@@ -1,4 +1,3 @@
-<button id="theme-toggle">🌗 Toggle Theme</button>
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,11 +6,20 @@
   <title>Kunal Tyagi — Portfolio</title>
   <link rel="stylesheet" href="kunal.css" />
 </head>
+
 <body>
+
+  <!-- THEME TOGGLE -->
+  <button id="theme-toggle" class="theme-btn">🌗</button>
+
+  <!-- HERO -->
   <header class="hero">
     <div class="container">
       <h1 class="name">Kunal Tyagi</h1>
-      <p class="tagline">I am a <span id="dynamic-tag">ML Enthusiast</span><span class="cursor">|</span></p>
+      <p class="tagline">
+        I am a <span id="dynamic-tag">ML Enthusiast</span><span class="cursor">|</span>
+      </p>
+
       <nav class="top-nav">
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
@@ -19,61 +27,80 @@
     </div>
   </header>
 
+  <!-- MAIN -->
   <main class="container">
+
+    <!-- ABOUT -->
     <section id="about">
       <h2>About</h2>
-      <p>Hi — I'm Kunal. I build useful things with code and data. Below are a few projects I've made.</p>
+      <p>
+        Hi — I'm Kunal. I build useful things with code and data.
+        I’m interested in Full Stack Development, Machine Learning,
+        and building real-world scalable systems.
+      </p>
     </section>
 
+    <!-- PROJECTS -->
     <section id="projects">
       <h2>Projects</h2>
+
       <div class="projects-grid">
+
         <article class="project-card">
           <h3>Calculator</h3>
-          <p>Simple calculator built with HTML, CSS and JavaScript.</p>
-          <a href="https://github.com/ktyagi-06/calculator" target="_blank" rel="noopener">View on GitHub</a>
+          <p>Simple calculator built with HTML, CSS, and JavaScript.</p>
+          <a href="https://github.com/ktyagi-06/calculator" target="_blank">View on GitHub</a>
         </article>
 
         <article class="project-card">
           <h3>News Website</h3>
-          <p>A news website using JavaScript to fetch and display articles.</p>
-          <a href="https://github.com/ktyagi-06/news_website" target="_blank" rel="noopener">View on GitHub</a>
+          <p>JavaScript-based news website fetching live articles.</p>
+          <a href="https://github.com/ktyagi-06/news_website" target="_blank">View on GitHub</a>
         </article>
 
         <article class="project-card">
           <h3>Digital Clock</h3>
-          <p>A realtime digital clock implemented in JavaScript.</p>
-          <a href="https://github.com/ktyagi-06/digital-clock" target="_blank" rel="noopener">View on GitHub</a>
+          <p>Realtime digital clock implemented using JavaScript.</p>
+          <a href="https://github.com/ktyagi-06/digital-clock" target="_blank">View on GitHub</a>
         </article>
 
         <article class="project-card">
-          <h3>To Do List Webpage</h3>
-          <p>To-do list app with add/remove and localStorage support.</p>
-          <a href="https://github.com/ktyagi-06/to-do-list-webpage" target="_blank" rel="noopener">View on GitHub</a>
+          <h3>To-Do List App</h3>
+          <p>To-do list with add/remove functionality and localStorage.</p>
+          <a href="https://github.com/ktyagi-06/to-do-list-webpage" target="_blank">View on GitHub</a>
         </article>
 
         <article class="project-card">
-          <h3>Credit Card Fraud Detection System</h3>
-          <p>A project demonstrating fraud detection concepts and visualizations.</p>
-          <a href="https://github.com/ktyagi-06/Credit-card-fraud-detection-system-" target="_blank" rel="noopener">View on GitHub</a>
+          <h3>Credit Card Fraud Detection</h3>
+          <p>ML-based fraud detection system with visualizations.</p>
+          <a href="https://github.com/ktyagi-06/Credit-card-fraud-detection-system-" target="_blank">View on GitHub</a>
         </article>
+
       </div>
     </section>
 
+    <!-- CONTACT -->
     <section id="contact">
       <h2>Contact</h2>
       <ul class="contact-list">
         <li>Email: <a href="mailto:ktyagi0506@gmail.com">ktyagi0506@gmail.com</a></li>
         <li>Phone: <a href="tel:+919354900424">+91 93549 00424</a></li>
-        <li>LinkedIn: <a href="https://www.linkedin.com/in/kunal-tyagi-b34537314/" target="_blank" rel="noopener">https://www.linkedin.com/in/kunal-tyagi-b34537314/</a></li>
+        <li>LinkedIn:
+          <a href="https://www.linkedin.com/in/kunal-tyagi-b34537314/" target="_blank">
+            linkedin.com/in/kunal-tyagi
+          </a>
+        </li>
       </ul>
     </section>
+
   </main>
 
-  <footer class="footer">
+  <!-- FOOTER -->
+  <footer>
     <p>© <span id="year"></span> Kunal Tyagi</p>
   </footer>
 
   <script src="kunal.js"></script>
 </body>
 </html>
+
