@@ -41,3 +41,7 @@
   const yEl = document.getElementById('year');
   if(yEl) yEl.textContent = y;
 })();
+const toggleButton = document.getElementById('theme-toggle');
+toggleButton.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+});
