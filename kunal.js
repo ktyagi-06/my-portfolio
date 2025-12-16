@@ -4,17 +4,6 @@ document.getElementById('theme-toggle')
     document.body.classList.toggle('dark');
   });
 
-// ================= DYNAMIC TAGLINE =================
-(function () {
-  const tagEl = document.getElementById('dynamic-tag');
-  const cursor = document.querySelector('.cursor');
-
-  const taglines = [
-    'ML Enthusiast',
-    'Full Stack Developer',
-    'AIML Engineer'
-  ];
-
   let idx = 0, char = 0, deleting = false;
 
   function typeEffect() {
@@ -99,3 +88,38 @@ const observer = new IntersectionObserver(entries => {
 document
   .querySelectorAll("section, .project-card")
   .forEach(el => observer.observe(el));
+const roles = [
+  "ML Enthusiast",
+  "Full Stack Developer",
+  "AIML Engineer",
+  "Problem Solver"
+];
+
+let roleIndex = 0;
+let charIndex = 0;
+let deleting = false;
+
+const tag = document.getElementById("dynamic-tag");
+
+function typeRole() {
+  const current = roles[roleIndex];
+
+  if (!deleting) {
+    tag.textContent = current.slice(0, charIndex++);
+    if (charIndex > current.length) {
+      deleting = true;
+      setTimeout(typeRole, 1000);
+      return;
+    }
+  } else {
+    tag.textContent = current.slice(0, charIndex--);
+    if (charIndex === 0) {
+      deleting = false;
+      roleIndex = (roleIndex + 1) % roles.length;
+    }
+  }
+  setTimeout(typeRole, deleting ? 60 : 100);
+}
+
+typeRole();
+
