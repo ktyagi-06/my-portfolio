@@ -1,47 +1,47 @@
-// Dynamic tagline switcher
-(function(){
+// ================= THEME TOGGLE =================
+document.getElementById('theme-toggle')
+  .addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+  });
+
+// ================= DYNAMIC TAGLINE =================
+(function () {
   const tagEl = document.getElementById('dynamic-tag');
   const cursor = document.querySelector('.cursor');
-  const taglines = ['ML Enthusiast','Full Stack Developer'];
-  let idx = 0;
-  let char = 0;
-  let deleting = false;
-  const typeSpeed = 90;
-  const pauseAfter = 1200;
 
-  function tick(){
-    const full = taglines[idx];
-    if(!deleting){
-      tagEl.textContent = full.slice(0, char+1);
-      char++;
-      if(char === full.length){
+  const taglines = [
+    'ML Enthusiast',
+    'Full Stack Developer',
+    'AIML Engineer'
+  ];
+
+  let idx = 0, char = 0, deleting = false;
+
+  function typeEffect() {
+    const word = taglines[idx];
+
+    if (!deleting) {
+      tagEl.textContent = word.slice(0, ++char);
+      if (char === word.length) {
         deleting = true;
-        setTimeout(tick, pauseAfter);
+        setTimeout(typeEffect, 1200);
         return;
       }
     } else {
-      tagEl.textContent = full.slice(0, char-1);
-      char--;
-      if(char === 0){
+      tagEl.textContent = word.slice(0, --char);
+      if (char === 0) {
         deleting = false;
-        idx = (idx+1) % taglines.length;
+        idx = (idx + 1) % taglines.length;
       }
     }
-    setTimeout(tick, deleting ? typeSpeed/2 : typeSpeed);
+    setTimeout(typeEffect, deleting ? 50 : 90);
   }
 
-  // Blink cursor
-  setInterval(()=>{ cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0'; },500);
+  setInterval(() => {
+    cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
+  }, 500);
 
-  // Kick off
-  if(tagEl) tick();
+  typeEffect();
 
-  // footer year
-  const y = new Date().getFullYear();
-  const yEl = document.getElementById('year');
-  if(yEl) yEl.textContent = y;
+  document.getElementById('year').textContent = new Date().getFullYear();
 })();
-const toggleButton = document.getElementById('theme-toggle');
-toggleButton.addEventListener('click', () => {
-  document.body.classList.toggle('dark');
-});
