@@ -1,45 +1,12 @@
-// ================= THEME TOGGLE =================
-document.getElementById('theme-toggle')
-  .addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-  });
+/* =========================
+   THEME TOGGLE (WITH MEMORY)
+========================= */
 
-  let idx = 0, char = 0, deleting = false;
+const themeToggle = document.getElementById("theme-toggle");
 
-  function typeEffect() {
-    const word = taglines[idx];
-
-    if (!deleting) {
-      tagEl.textContent = word.slice(0, ++char);
-      if (char === word.length) {
-        deleting = true;
-        setTimeout(typeEffect, 1200);
-        return;
-      }
-    } else {
-      tagEl.textContent = word.slice(0, --char);
-      if (char === 0) {
-        deleting = false;
-        idx = (idx + 1) % taglines.length;
-      }
-    }
-    setTimeout(typeEffect, deleting ? 50 : 90);
-  }
-
-  setInterval(() => {
-    cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
-  }, 500);
-
-  typeEffect();
-
-  document.getElementById('year').textContent = new Date().getFullYear();
-})();
-document.getElementById("year").textContent =
-  new Date().getFullYear();
-const toggle = document.getElementById("theme-toggle");
-
-toggle.addEventListener("click", () => {
+themeToggle.addEventListener("click", () => {
   document.body.classList.toggle("dark");
+
   localStorage.setItem(
     "theme",
     document.body.classList.contains("dark") ? "dark" : "light"
@@ -49,6 +16,18 @@ toggle.addEventListener("click", () => {
 if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark");
 }
+
+/* =========================
+   FOOTER YEAR
+========================= */
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+/* =========================
+   TYPING TAGLINE EFFECT
+========================= */
+
 const roles = [
   "ML Enthusiast",
   "Full Stack Developer",
@@ -56,27 +35,39 @@ const roles = [
   "Problem Solver"
 ];
 
-let i = 0;
-let j = 0;
+let roleIndex = 0;
+let charIndex = 0;
 let isDeleting = false;
+
 const tag = document.getElementById("dynamic-tag");
 
-function typeEffect() {
-  const current = roles[i];
+function typeRole() {
+  const current = roles[roleIndex];
 
   if (!isDeleting) {
-    tag.textContent = current.slice(0, j++);
-    if (j > current.length) isDeleting = true;
+    tag.textContent = current.slice(0, charIndex++);
+    if (charIndex > current.length) {
+      isDeleting = true;
+      setTimeout(typeRole, 1200);
+      return;
+    }
   } else {
-    tag.textContent = current.slice(0, j--);
-    if (j === 0) {
+    tag.textContent = current.slice(0, charIndex--);
+    if (charIndex === 0) {
       isDeleting = false;
-      i = (i + 1) % roles.length;
+      roleIndex = (roleIndex + 1) % roles.length;
     }
   }
+
+  setTimeout(typeRole, isDeleting ? 60 : 100);
 }
 
-setInterval(typeEffect, 120);
+typeRole();
+
+/* =========================
+   SCROLL REVEAL ANIMATION
+========================= */
+
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -88,38 +79,4 @@ const observer = new IntersectionObserver(entries => {
 document
   .querySelectorAll("section, .project-card")
   .forEach(el => observer.observe(el));
-const roles = [
-  "ML Enthusiast",
-  "Full Stack Developer",
-  "AIML Engineer",
-  "Problem Solver"
-];
-
-let roleIndex = 0;
-let charIndex = 0;
-let deleting = false;
-
-const tag = document.getElementById("dynamic-tag");
-
-function typeRole() {
-  const current = roles[roleIndex];
-
-  if (!deleting) {
-    tag.textContent = current.slice(0, charIndex++);
-    if (charIndex > current.length) {
-      deleting = true;
-      setTimeout(typeRole, 1000);
-      return;
-    }
-  } else {
-    tag.textContent = current.slice(0, charIndex--);
-    if (charIndex === 0) {
-      deleting = false;
-      roleIndex = (roleIndex + 1) % roles.length;
-    }
-  }
-  setTimeout(typeRole, deleting ? 60 : 100);
-}
-
-typeRole();
 
