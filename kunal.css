@@ -264,3 +264,37 @@ section,
   0%, 50%, 100% { opacity: 1; }
   25%, 75% { opacity: 0; }
 }
+/* =========================
+   EDUCATION SECTION
+========================= */
+
+.education-card {
+  background: var(--card);
+  padding: 2rem;
+  max-width: 700px;
+  margin: 2rem auto 0;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.education-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.edu-field {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.edu-university {
+  margin-top: 0.4rem;
+  font-size: 1.05rem;
+}
+
+.edu-status {
+  margin-top: 0.6rem;
+  font-style: italic;
+  opacity: 0.8;
+}
