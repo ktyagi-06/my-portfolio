@@ -270,3 +270,27 @@ footer {
     font-size: 2rem;
   }
 }
+/* Theme variables */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #1a1a1a;
+  --accent-color: #4a90e2;
+  --section-bg: #f9f9f9;
+}
+
+body.dark {
+  --bg-color: #0d1117;
+  --text-color: #e6edf3;
+  --accent-color: #58a6ff;
+  --section-bg: #161b22;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.3s, color 0.3s;
+}
+
+a {
+  color: var(--accent-color);
+}
