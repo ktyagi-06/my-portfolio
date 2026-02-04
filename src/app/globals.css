@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+/* smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* section offset */
+section {
+  scroll-margin-top: 80px;
+}
+
+/* selection */
+::selection {
+  background: #3b82f6;
+  color: white;
+}
+
+/* =========================
+   THEME VARIABLES
+========================= */
+
+:root {
+  --text-main: #0b1120;
+  --text-sub: #475569;
+
+  --card-bg: #ffffff;
+  --card-border: rgba(0,0,0,0.08);
+}
+
+/* DARK MODE VARIABLES */
+.dark {
+  --text-main: #e5e7eb;
+  --text-sub: #9ca3af;
+
+  --card-bg: rgba(255,255,255,0.06);
+  --card-border: rgba(255,255,255,0.14);
+}
+
+/* =========================
+   BODY BACKGROUNDS
+========================= */
+
+/* ====== 3D FIGMA STYLE BACKGROUND ====== */
+
+:root {
+  --bg-main: #f8fafc;
+}
+
+.dark {
+  --bg-main: #0b1120;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(800px circle at 15% 20%, rgba(59,130,246,0.18), transparent 60%),
+    radial-gradient(700px circle at 85% 75%, rgba(168,85,247,0.16), transparent 65%),
+    radial-gradient(600px circle at 50% -10%, rgba(14,165,233,0.14), transparent 60%),
+    linear-gradient(to bottom, var(--bg-main), var(--bg-main));
+  background-attachment: fixed;
+  color: var(--text-main);
+  transition: background 0.4s ease, color 0.3s ease;
+}
+/* floating glow layers */
+
+.bg-orb {
+  position: fixed;
+  width: 420px;
+  height: 420px;
+  filter: blur(80px);
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb-blue {
+  background: #3b82f6;
+  top: 10%;
+  left: -120px;
+}
+
+.orb-purple {
+  background: #a855f7;
+  bottom: 5%;
+  right: -140px;
+}
+
+.orb-cyan {
+  background: #06b6d4;
+  top: 60%;
+  left: 40%;
+}
+.bg-orb {
+  position: fixed;
+  width: 420px;
+  height: 420px;
+  filter: blur(80px);
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb-blue { background: #3b82f6; top: 10%; left: -120px; }
+.orb-purple { background: #a855f7; bottom: 5%; right: -140px; }
+.orb-cyan { background: #06b6d4; top: 60%; left: 40%; }
+
+
+/* =========================
+   CARD UTILITY (optional)
+========================= */
+
+.glass-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(12px);
+  border-radius: 14px;
+}
+/* light default */
+:root {
+  --page-bg: #ffffff;
+  --page-text: #0f172a;
+  color-scheme: light;
+  background-color: var(--page-bg);
+  color: var(--page-text);
+}
+
