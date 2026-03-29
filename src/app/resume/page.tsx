@@ -4,12 +4,12 @@ export default function ResumePage() {
   return (
     <div className="flex flex-col gap-6 p-10">
       <iframe 
-        src="/resume.pdf"
+        src="/MyResume.pdf"
         className="w-full h-[90vh] border rounded-lg"
       />
 
       <a
-        href="/resume.pdf"
+        href="/MyResume.pdf"
         download
         className="px-4 py-2 text-center rounded-md border 
                    border-gray-300 dark:border-gray-700
