@@ -1,41 +1,35 @@
 "use client";
-import { useState, useEffect } from "react";
 
-const roles = [
-  "Full Stack Developer",
-  "AIML Engineer",
-  "Problem Solver",
-  "Tech Enthusiast"
-];
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { roles } from "@/utils/data";
 
+/** Cycles roles with a vertical slide instead of a typewriter. */
 export default function Typing() {
-  const [index, setIndex] = useState(0);
-  const [subIndex, setSubIndex] = useState(0);
-  const [reverse, setReverse] = useState(false);
+  const [i, setI] = useState(0);
 
   useEffect(() => {
-    if (subIndex === roles[index].length + 1 && !reverse) {
-      setTimeout(() => setReverse(true), 700);
-      return;
-    }
-
-    if (subIndex === 0 && reverse) {
-      setReverse(false);
-      setIndex((prev) => (prev + 1) % roles.length);
-      return;
-    }
-
-    const timeout = setTimeout(() => {
-      setSubIndex((prev) => prev + (reverse ? -1 : 1));
-    }, reverse ? 80 : 120);
-
-    return () => clearTimeout(timeout);
-  }, [subIndex, index, reverse]);
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+    const t = window.setInterval(() => setI((p) => (p + 1) % roles.length), 2600);
+    return () => window.clearInterval(t);
+  }, []);
 
   return (
-    <span className="text-black dark:text-white font-medium">
-      {roles[index].substring(0, subIndex)}
-      <span className="border-r-2 border-black dark:border-white ml-1 animate-pulse"></span>
+    <span className="relative inline-block h-[1.3em] overflow-hidden align-bottom" aria-live="off">
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.span
+          key={roles[i]}
+          className="inline-block whitespace-nowrap"
+          style={{ color: "var(--accent-text)" }}
+          initial={{ y: "100%", opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: "-100%", opacity: 0 }}
+          transition={{ duration: 0.45, ease: [0.2, 0.8, 0.2, 1] }}
+        >
+          {roles[i]}
+        </motion.span>
+      </AnimatePresence>
     </span>
   );
 }

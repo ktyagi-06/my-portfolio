@@ -1,5 +1,9 @@
 import About from "@/sections/About";
 
 export default function AboutPage() {
-  return <About />;
+  return (
+    <main className="pt-16">
+      <About />
+    </main>
+  );
 }

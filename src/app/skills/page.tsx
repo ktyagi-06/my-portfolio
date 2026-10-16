@@ -1,5 +1,9 @@
 import Skills from "@/sections/Skills";
 
 export default function SkillsPage() {
-  return <Skills />;
+  return (
+    <main className="pt-16">
+      <Skills />
+    </main>
+  );
 }

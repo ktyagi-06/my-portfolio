@@ -1,30 +1,39 @@
+import { FiBookOpen } from "react-icons/fi";
+import { education } from "@/utils/data";
+
 export default function Education() {
   return (
-    <section id="education" className="px-10 mt-24">
-      <div className="
-w-full
-bg-white/5
-border border-white/10
-backdrop-blur-md
-rounded-xl
-p-10
-shadow-lg
-transition-all duration-300
-hover:-translate-y-2
-hover:bg-white/10
-hover:border-white/20
-hover:shadow-[0_20px_60px_rgba(59,130,246,0.15)]
-
-      ">
-        <h2 className="text-3xl font-bold mb-6 text-center">Education</h2>
-
-        <div className="text-center">
-          <h3 className="text-xl font-semibold">
-            B.Tech — Manipal University Jaipur
+    <div className="panel p-7 md:p-8">
+      <div className="flex items-start gap-4">
+        <span
+          className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl"
+          style={{ background: "var(--accent-soft)", color: "var(--accent-text)" }}
+        >
+          <FiBookOpen size={20} />
+        </span>
+        <div>
+          <h3 className="text-xl" style={{ color: "var(--text)" }}>
+            {education.school}
           </h3>
-          <p className="text-[var(--text-sub)]">(2024 — 2028)</p>
+          <p className="mt-1 text-[0.95rem]" style={{ color: "var(--muted)" }}>
+            {education.degree}
+          </p>
+          <p className="mt-1 text-[0.95rem]" style={{ color: "var(--muted)" }}>
+            {education.period} · CGPA {education.cgpa}
+          </p>
         </div>
       </div>
-    </section>
+
+      <p className="mb-3 mt-6 text-sm font-semibold" style={{ color: "var(--text)" }}>
+        Relevant coursework
+      </p>
+      <ul className="flex flex-wrap gap-2">
+        {education.coursework.map((c) => (
+          <li key={c} className="chip !text-[0.82rem]">
+            {c}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
